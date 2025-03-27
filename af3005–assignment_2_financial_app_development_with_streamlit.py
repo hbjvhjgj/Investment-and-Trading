@@ -124,9 +124,6 @@ Students can choose their own ideas, but here are some suggestions:
 ---
 """
 
-!pip install yfinance
-
-!pip install yfinance pandas scikit-learn matplotlib
 
 import yfinance as yf
 import pandas as pd
