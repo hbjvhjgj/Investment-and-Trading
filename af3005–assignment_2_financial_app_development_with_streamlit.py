@@ -1,5 +1,9 @@
 
 import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+import numpy as np
 
 def get_stock_price(symbol):
     stock = yf.Ticker(symbol)
