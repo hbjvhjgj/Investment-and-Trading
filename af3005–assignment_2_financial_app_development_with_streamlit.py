@@ -7,7 +7,7 @@ import numpy as np
 from datetime import datetime, timedelta
 
 # --- Streamlit UI Setup ---
-st.set_page_config(page_title="Stock Market Dashboard", layout="wide")
+st.set_page_config(page_title="Investment & Trading", layout="wide")
 
 # Custom styling
 st.markdown("""
@@ -19,8 +19,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- App Title ---
-st.title("📈 Stock Market Dashboard")
+# --- App Header ---
+st.markdown("<h1 style='text-align: center; color: #4A90E2;'>📈 Investment & Trading</h1>", unsafe_allow_html=True)
 st.subheader("Analyze stock trends, manage your portfolio, and predict future prices!")
 
 # --- Get Stock Data Function ---
@@ -130,5 +130,5 @@ st.markdown("---")
 
 # --- Footer ---
 st.markdown("""
-    <h4 style="text-align: center;">📊 Developed with ❤️ using Streamlit</h4>
+    <h4 style="text-align: center;">📊 Investment & Trading | Developed with ❤️ using Streamlit</h4>
 """, unsafe_allow_html=True)
