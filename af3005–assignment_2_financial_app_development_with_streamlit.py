@@ -1,4 +1,4 @@
-
+import streamlit as st
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,9 +11,6 @@ def get_stock_price(symbol):
     if not data.empty:
         return data["Close"].iloc[-1]
     return "Stock symbol not found!"
-
-
-print(f"AAPL Current Price: ${get_stock_price('AAPL')}")
 
 portfolio = {}
 
@@ -33,21 +30,24 @@ def sell_stock(symbol, quantity):
         return f"Sold {quantity} shares of {symbol}."
     return "Not enough shares to sell!"
 
-print(buy_stock("AAPL", 5, get_stock_price("AAPL")))
-print(sell_stock("AAPL", 2))
-print(portfolio)
+# Streamlit UI
+st.title("Stock Price Estimator")
 
-def plot_stock(symbol):
+symbol = st.text_input("Enter Stock Symbol:", "AAPL")
+
+if st.button("Get Stock Price"):
+    price = get_stock_price(symbol)
+    st.write(f"Current Price of {symbol}: ${price}")
+
+if st.button("Plot Stock Trend"):
     stock = yf.Ticker(symbol)
     data = stock.history(period="1mo")
 
-    plt.figure(figsize=(10, 5))
-    plt.plot(data.index, data["Close"], label="Close Price", color="blue")
-    plt.xlabel("Date")
-    plt.ylabel("Price (USD)")
-    plt.title(f"{symbol} Stock Price Trend")
-    plt.legend()
-    plt.show()
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(data.index, data["Close"], label="Close Price", color="blue")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Price (USD)")
+    ax.set_title(f"{symbol} Stock Price Trend")
+    ax.legend()
 
-
-plot_stock("AAPL")
+    st.pyplot(fig)  # This ensures the plot is displayed in Streamlit
